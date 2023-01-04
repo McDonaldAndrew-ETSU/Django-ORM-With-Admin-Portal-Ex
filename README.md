@@ -76,3 +76,27 @@ racer.skill = 99
 racer.save()
 
 #### You can find more Django PowerShell Commands here: https://learn.microsoft.com/en-us/training/modules/django-models-data/8-exercise-work-with-data
+
+# Authentication and Authorization
+Django has three main types of users by default: **users**, **staff**, and **superusers**. You can create your own types by making groups or setting unique permissions.
+### Access Levels
+|   Access     | User | Staff  | SuperUser |
+|    :---      | ---: | :----: | :---      |
+| Admin Site   | No   |  Yes   | Yes       |
+| Manage Data  | No   |  No    | Yes       |
+| Manage Users | No   |  No    | Yes       |
+By default, staff have access to the admin site but not to modify any data. You can set individual permissions or create groups as needed to provide the appropriate levels of access.
+
+To create users in Django, you must first create a superuser. To create a superuser: **python manage.py createsuperuser**.
+After you create a superuser, you can access the admin site to create any other users.
+
+After the admin user has been created, it's time for our first sign-in to the Django admin interface. During the project setup earlier in this module, we started the server, so our admin site is already active. Go to:
+http://localhost:8000/admin.
+
+# Register Models
+To register your models in order to have access to the data, open your app(s) directory admin.py file. Just add these lines of code to register your models:
+- **from .models import Model_1_Name, Model_2_Name**
+
+- **admin.site.register(Model_1_Name)**
+- **admin.site.register(Model_2_Name)**
+- **etc**
