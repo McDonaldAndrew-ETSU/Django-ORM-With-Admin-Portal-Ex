@@ -75,4 +75,4 @@ To Update type:
 racer.skill = 99
 racer.save()
 
-#### You can find more Django
+#### You can find more Django PowerShell Commands here: https://learn.microsoft.com/en-us/training/modules/django-models-data/8-exercise-work-with-data
