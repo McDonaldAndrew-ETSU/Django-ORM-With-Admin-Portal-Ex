@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+Racer Form
+{% endblock %}
+
+{% block content %}
+<h2>Racer Form</h2>
+<form method="POST">
+    {% csrf_token %}
+
+    <!-- instead of {{ form.as_p }}   we will use  --> {{ form | crispy }}
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+<div>
+    <a href="{% url 'racer_list' %}">Return to Racer List</a>
+</div>
+{% endblock %}

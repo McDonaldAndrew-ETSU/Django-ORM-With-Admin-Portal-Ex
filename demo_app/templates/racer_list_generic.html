@@ -10,7 +10,7 @@ Racer list
     <a href="{% url 'racer_create' %}">Create a Racer</a>
 </div>
 <div>Here is the list of racers</div>
-    {% for r in racers %}
+    {% for r in racers2 %}
         <div>
             <a href="{% url 'racer_detail' r.id %}">
                 Id: {{r.id}} ---- Racer Name: {{r.name}} ---- Racer Skill: {{r.skill}} 

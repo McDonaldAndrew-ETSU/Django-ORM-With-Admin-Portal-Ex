@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+Racer Delete Form 
+{% endblock %}
+
+{% block content %}
+<h2>Racer Delete Form</h2>
+<form method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete {{ racer2.name }}?</p>
+
+    <!-- instead of {{ form.as_p }}   we will use  --> {{ form | crispy }}
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+<div>
+    <a href="{% url 'racer_list' %}">Return to Racer List</a>
+</div>
+{% endblock %}
