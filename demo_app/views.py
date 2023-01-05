@@ -15,6 +15,7 @@ def racer_detail(request, pk): # Read Racer Method
     return render(request, 'racer_detail.html', context)
 
 
+
 class RacerCreateView(generic.CreateView):
     model = models.Racer
     template_name = 'racer_create_update_form_generic.html'
