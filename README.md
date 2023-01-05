@@ -100,3 +100,42 @@ To register your models in order to have access to the data, open your app(s) di
 - **admin.site.register(Model_1_Name)**
 - **admin.site.register(Model_2_Name)**
 - **etc**
+
+# Create Views
+Open the views.py file in a specific app. We will customize our views and the first step to do so is to alter the initial import statement.
+
+Change the import statement to **from django.shortcuts import render, get_object_or_404** and add **from . import models**
+
+Django View code can now be created.
+
+# Create the URLconf
+For our views to be callable, we need to register the appropriate paths.
+Create a urls.py inside of the specific app directory.
+
+use this code:
+
+- from django.urls import path
+- from . import views
+
+- urlpatterns = [
+    - path('', views.method_one_view_list, name='method_one_view_list'),
+    - path('method_two_view_detail/<int:pk>', views.method_two_view_detail, name='method_two_view_detail'),
+    #### More patterns to come later
+]
+
+Now we must register this URLconf with the main URLconf in the project by going to its urls.py.
+First import from django.urls import path, include. Inside the urlpatterns array, include the path to the specific App's url.py in order to access the App's View code
+
+- urlpatterns = [
+    - ...
+    - path('empty_or_something/', include('name_of_app.urls'))
+]
+
+# Create Base Templates (Parent Pages)
+Creating a parent page is the same as creating any Django HTML template. You provide the outer structure and then include {% block %} placeholders. These placeholders allow the children to provide the content to be placed in those placeholders.
+
+Create a new folder inside your specific App named ***templates***. This is where you will keep your html files.
+
+### Child Page
+We can create a child page from the parent by using the extends keyword. With this keyword, we provide the name of the HTML file of the parent template. We then use the appropriate {% block %} statements to add the content specific to that page.
+

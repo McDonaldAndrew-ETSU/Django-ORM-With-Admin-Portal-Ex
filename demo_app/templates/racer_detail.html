@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Racer Detail
+{% endblock %}
+
+{% block content %}
+<h2>{{ racer.name }}</h2>
+<div>Information</div>
+    <div>
+        Racer Skill Level: {{ racer.skill }}/10
+    </div>
+{% endblock %}
