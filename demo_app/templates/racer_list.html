@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Racer list
+{% endblock %}
+
+{% block content %}
+<h2>Racer list</h2>
+<div>Here is the list of racers</div>
+    {% for r in racers %}
+        <div>
+            <a href="{% url 'racer_detail' r.id %}">
+                Id: {{r.id}} ---- Racer Name: {{r.name}} ---- Racer Skill: {{r.skill}} 
+                
+            </a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
