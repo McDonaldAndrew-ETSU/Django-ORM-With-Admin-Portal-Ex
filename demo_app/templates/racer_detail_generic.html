@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Racer Detail
+{{ racer2.name }}
 {% endblock %}
 
 {% block content %}
-<h2>{{ racer.name }}</h2>
+<h2>{{ racer2.name }}</h2>
 <div>Information</div>
     <div>
-        Racer Skill Level: {{ racer.skill }}/10
+        Racer Skill Level: {{ racer2.skill }}/10
     </div>
 
     <div>

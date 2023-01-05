@@ -139,3 +139,46 @@ Create a new folder inside your specific App named ***templates***. This is wher
 ### Child Page
 We can create a child page from the parent by using the extends keyword. With this keyword, we provide the name of the HTML file of the parent template. We then use the appropriate {% block %} statements to add the content specific to that page.
 
+# Generic Views
+In the specific App's views.py, import django.views generic library
+ **from django.views import generic**
+
+After creating a View class using a parameter of generic.type_of_view (think CRUD: CreateView, DetailsView, UpdateView, and DeleteView), we must register the class with urls.py in the App.
+
+# Creation workflow
+At the surface, the code to allow a user to create an item might seem trivial. As it turns out, it's a deceptively involved process.
+
+- The user sends a GET request to signal they want the form to create a new item.
+- The server sends the form with a special token to prevent cross-site request forgery (CSRF).
+- The user completes the form and selects submit, which sends a POST request to indicate the form has been completed.
+- The server validates the CSRF token to ensure no tampering has taken place.
+- The server validates all information to ensure it meets the rules. An error message is returned if validation fails.
+- The server attempts to save the item to the database. If it fails, an error message is returned to the user.
+- After successfully saving the new item, the server redirects the user to a success page.
+This process requires quite a bit code! Most of it's boilerplate, which means it's the same every time you create it.
+
+# Form templates for create and update
+The generic views can create the HTML form for us dynamically. All we need to provide is a template to act as the placeholder for the form. The placeholder template ensures the form matches the rest of our site. Fortunately, we don't need much code to create it.
+
+The generic views automatically create a form variable for our template to use. The form elements provided by Django can be displayed inside <p> tags or as a <table>.
+
+The form variable contains all of the appropriate HTML to create the controls from the form. It doesn't contain the <form> tag itself or a submit button. Our template must include four items:
+
+- The form element with the method set to POST because this setting triggers the save operation on the server.
+- The code {% csrf_token %} to add the CSRF token to prevent spoofing.
+- The code {{ form.as_p }} or {{ form.as_table }} to display the dynamically generated form.
+- The submit button.
+
+- <form method="post">{% csrf_token %}
+    - {{ form.as_p }}
+    - <button type="submit">Save</button>
+- </form>
+
+# get_absolute_url function to Models class
+In order to get back to a page after submitting a Create or Update form, we must add the function get_absolute_url to our specific model and import the reverse method.
+
+from django.urls import reverse
+
+    def get_absolute_url(self):
+        return reverse('dog_detail', kwargs={"pk": self.pk})
+
